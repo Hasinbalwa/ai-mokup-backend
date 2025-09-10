@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS  # <-- import CORS
 from PIL import Image
 import io, requests, os
 
 app = Flask(__name__)
+CORS(app)  # <-- enable CORS for all routes
 
 def overlay_logo(product_url, logo_file):
-    # Download product image from Shopify URL
     response = requests.get(product_url, stream=True)
     if response.status_code != 200:
         raise Exception("Failed to fetch product image from URL")
@@ -15,12 +16,10 @@ def overlay_logo(product_url, logo_file):
 
     pw, ph = product_img.size
 
-    # Resize logo ~25% of product width
     target_w = max(40, int(pw * 0.25))
     logo_ratio = logo_img.height / logo_img.width
     logo_img = logo_img.resize((target_w, int(target_w * logo_ratio)), Image.LANCZOS)
 
-    # Center position
     px = (pw - logo_img.width) // 2
     py = (ph - logo_img.height) // 2
 
