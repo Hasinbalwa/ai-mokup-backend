@@ -1,6 +1,7 @@
-flask
+Flask
 flask-cors
-openai
-requests
-gunicorn
 Pillow
+python-dotenv
+openai
+gunicorn
+requests
