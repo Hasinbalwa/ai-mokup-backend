@@ -39,8 +39,10 @@ def generate_mockup():
         rough_bytes.seek(0)
 
         prompt = (
-            "Place the logo on the product in a realistic way with natural lighting "
-            "and shadows. Preserve the logo's exact colors and shapes."
+            "Create a high-quality, photorealistic product mockup of a paper bag using the provided image. "
+            "Use the provided brand logo already placed in the mockup and ensure it is centered on the bag surface. "
+            "Produce a clean studio-style mockup with natural lighting, correct perspective, crisp edges, and the logo clearly visible and correctly colored. "
+            "No watermarks or UI elements—output a single realistic image."
         )
 
         response = client.images.edit(
